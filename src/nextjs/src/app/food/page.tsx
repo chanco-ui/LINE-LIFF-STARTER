@@ -31,7 +31,20 @@ export default function FoodPage() {
   // 選択された日付の食事をフィルタリング
   const selectedDateMeals = meals.filter(meal => meal.date === selectedDate);
 
-  const handleSubmit = (meal: MealRecord) => {
+  const handleSubmit = (data: { type: "朝食" | "昼食" | "夕食" | "間食"; foods: FoodEntry[]; time: string; memo: string; }) => {
+    const meal: MealRecord = {
+      id: Date.now().toString(),
+      date: selectedDate,
+      mealType: data.type,
+      time: data.time,
+      foodItems: data.foods,
+      totalCalories: 0, // 計算ロジックを追加
+      totalProtein: 0,  // 計算ロジックを追加
+      totalCarbs: 0,    // 計算ロジックを追加
+      totalFat: 0,      // 計算ロジックを追加
+      notes: data.memo,
+      photos: [],
+    };
     if (editingMeal) {
       // 編集モードの場合
       setMeals(meals.map(m => (m.id === meal.id ? meal : m)));
