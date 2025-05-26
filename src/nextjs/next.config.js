@@ -1,6 +1,9 @@
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
-  env: {
-    LIFF_ID: process.env.LIFF_ID,
-  },
-};
+  experimental: {
+    appDir: true,
+  }
+}
+
+module.exports = nextConfig
